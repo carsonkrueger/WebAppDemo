@@ -32,6 +32,15 @@ public class HomeController : Controller
             },
         };
     }
+
+    public IActionResult GetUsers()
+    {
+        using (var context = new UsersContext())
+        {
+            return Json(context.Users.ToList());
+        }
+    }
+
     public IActionResult Index()
     {
         return View();

@@ -19,8 +19,10 @@
 
     return (
         <div className="commentBox">Hello, world! I am a CommentBox.
-            <button onClick={() => setCount((prev) => prev + 1)}>Add One</button>
-            <div>{count}</div>
+            <div>
+                <button onClick={() => setCount((prev) => prev + 1)}>Add One</button>
+                <div>count: {count}</div>
+            </div>
             {/* I just want to render the json data fetched from server here */}
             {apiData.length > 0 && apiData.map((item, i) => <div key={i}>{item.id} {item.author} <br/> {item.text}</div>) }
         </div>
