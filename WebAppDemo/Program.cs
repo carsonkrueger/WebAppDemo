@@ -10,8 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddReact();
 
-var connectionString = "server=localhost:3306;user=root;password=1002;database=ef";
-var serverVersion = new MySqlServerVersion(new Version(8, 3));
+var connectionString = "Server=localhost;port=3306;User=root;Password=1002;database=sys";
+var serverVersion = new MySqlServerVersion(new Version(8, 3, 0));
 builder.Services.AddDbContext<UsersContext>(dbContextOptions => dbContextOptions.UseMySql(connectionString, serverVersion).LogTo(Console.WriteLine, LogLevel.Information).EnableSensitiveDataLogging().EnableDetailedErrors());
 
 // Make sure a JS engine is registered, or you will get an error!

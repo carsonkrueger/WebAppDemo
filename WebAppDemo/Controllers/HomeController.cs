@@ -6,10 +6,12 @@ namespace WebAppDemo.Controllers;
 
 public class HomeController : Controller
 {
-    private static readonly IList<CommentModel> _comments;
+    private readonly IList<CommentModel> _comments;
+    private readonly UsersContext _usersContext;
 
-    static HomeController()
+    public HomeController(UsersContext cx)
     {
+        _usersContext = cx;
         _comments = new List<CommentModel>
         {
             new CommentModel
@@ -33,12 +35,11 @@ public class HomeController : Controller
         };
     }
 
+    [HttpGet]
+    [Route("users")]
     public IActionResult GetUsers()
     {
-        using (var context = new UsersContext())
-        {
-            return Json(context.Users.ToList());
-        }
+         return Json(_usersContext.Users.ToList());
     }
 
     public IActionResult Index()
